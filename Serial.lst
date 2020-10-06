@@ -1,0 +1,398 @@
+   1               		.file	"Serial.cpp"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	_Z5shiftv
+  18               	_Z5shiftv:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 21E0      		ldi r18,lo8(1)
+  25 0002 30E0      		ldi r19,hi8(1)
+  26               	.LVL0:
+  27 0004 00C0      		rjmp .L2
+  28               	.L3:
+  29               	.LBB7:
+  30               	.LM3:
+  31 0006 F901      		movw r30,r18
+  32 0008 E050      		subi r30,lo8(-(buffer))
+  33 000a F040      		sbci r31,hi8(-(buffer))
+  34 000c 8081      		ld r24,Z
+  35 000e F901      		movw r30,r18
+  36 0010 E050      		subi r30,lo8(-(buffer-1))
+  37 0012 F040      		sbci r31,hi8(-(buffer-1))
+  38 0014 8083      		st Z,r24
+  39               	.LM4:
+  40 0016 2F5F      		subi r18,lo8(-(1))
+  41 0018 3F4F      		sbci r19,hi8(-(1))
+  42               	.L2:
+  43 001a 8091 0000 		lds r24,uart_str_count
+  44 001e 90E0      		ldi r25,lo8(0)
+  45 0020 2817      		cp r18,r24
+  46 0022 3907      		cpc r19,r25
+  47 0024 04F0      		brlt .L3
+  48               	/* epilogue start */
+  49               	.LBE7:
+  50               	.LM5:
+  51 0026 0895      		ret
+  52               	.LFE6:
+  54               	.global	_ZN6Serial5beginEv
+  56               	_ZN6Serial5beginEv:
+  57               	.LFB7:
+  58               	.LM6:
+  59               	.LVL1:
+  60               	/* prologue: function */
+  61               	/* frame size = 0 */
+  62               	.LBB8:
+  63               	.LM7:
+  64 0028 1092 C500 		sts 197,__zero_reg__
+  65               	.LM8:
+  66 002c 87E6      		ldi r24,lo8(103)
+  67               	.LVL2:
+  68 002e 8093 C400 		sts 196,r24
+  69               	.LM9:
+  70 0032 86E0      		ldi r24,lo8(6)
+  71 0034 8093 C200 		sts 194,r24
+  72               	.LM10:
+  73 0038 88E9      		ldi r24,lo8(-104)
+  74 003a 8093 C100 		sts 193,r24
+  75               	.LM11:
+  76               	/* #APP */
+  77               	 ;  27 "Serial.cpp" 1
+  78 003e 7894      		sei
+  79               	 ;  0 "" 2
+  80               	/* epilogue start */
+  81               	/* #NOAPP */
+  82               	.LBE8:
+  83               	.LM12:
+  84 0040 0895      		ret
+  85               	.LFE7:
+  87               	.global	__vector_18
+  89               	__vector_18:
+  90               	.LFB8:
+  91               	.LM13:
+  92 0042 1F92      		push __zero_reg__
+  93 0044 0F92      		push r0
+  94 0046 0FB6      		in r0,__SREG__
+  95 0048 0F92      		push r0
+  96 004a 1124      		clr __zero_reg__
+  97 004c 8F93      		push r24
+  98 004e 9F93      		push r25
+  99 0050 EF93      		push r30
+ 100 0052 FF93      		push r31
+ 101               	/* prologue: Signal */
+ 102               	/* frame size = 0 */
+ 103               	.LBB9:
+ 104               	.LM14:
+ 105 0054 9091 C600 		lds r25,198
+ 106               	.LVL3:
+ 107               	.LM15:
+ 108 0058 9A30      		cpi r25,lo8(10)
+ 109 005a 01F0      		breq .L9
+ 110               	.LM16:
+ 111 005c 8091 0000 		lds r24,uart_str_count
+ 112 0060 8035      		cpi r24,lo8(80)
+ 113 0062 00F4      		brsh .L9
+ 114               	.LM17:
+ 115 0064 E091 0000 		lds r30,uart_str_count
+ 116 0068 F0E0      		ldi r31,lo8(0)
+ 117 006a E050      		subi r30,lo8(-(buffer))
+ 118 006c F040      		sbci r31,hi8(-(buffer))
+ 119 006e 9083      		st Z,r25
+ 120               	.LM18:
+ 121 0070 8091 0000 		lds r24,uart_str_count
+ 122 0074 8F5F      		subi r24,lo8(-(1))
+ 123 0076 8093 0000 		sts uart_str_count,r24
+ 124               	.L9:
+ 125               	/* epilogue start */
+ 126               	.LBE9:
+ 127               	.LM19:
+ 128 007a FF91      		pop r31
+ 129 007c EF91      		pop r30
+ 130 007e 9F91      		pop r25
+ 131               	.LVL4:
+ 132 0080 8F91      		pop r24
+ 133 0082 0F90      		pop r0
+ 134 0084 0FBE      		out __SREG__,r0
+ 135 0086 0F90      		pop r0
+ 136 0088 1F90      		pop __zero_reg__
+ 137 008a 1895      		reti
+ 138               	.LFE8:
+ 140               	.global	_ZN6Serial9availableEv
+ 142               	_ZN6Serial9availableEv:
+ 143               	.LFB9:
+ 144               	.LM20:
+ 145               	.LVL5:
+ 146               	/* prologue: function */
+ 147               	/* frame size = 0 */
+ 148               	.LM21:
+ 149 008c 8091 0000 		lds r24,uart_str_count
+ 150               	.LVL6:
+ 151               	/* epilogue start */
+ 152               	.LM22:
+ 153 0090 0895      		ret
+ 154               	.LFE9:
+ 156               	.global	_ZN6Serial4readEv
+ 158               	_ZN6Serial4readEv:
+ 159               	.LFB10:
+ 160               	.LM23:
+ 161               	.LVL7:
+ 162               	/* prologue: function */
+ 163               	/* frame size = 0 */
+ 164               	.LBB10:
+ 165               	.LM24:
+ 166 0092 8091 0000 		lds r24,uart_str_count
+ 167               	.LVL8:
+ 168 0096 8823      		tst r24
+ 169 0098 01F4      		brne .L13
+ 170 009a 40E0      		ldi r20,lo8(0)
+ 171               	.LVL9:
+ 172 009c 00C0      		rjmp .L14
+ 173               	.LVL10:
+ 174               	.L13:
+ 175               	.LBB11:
+ 176               	.LM25:
+ 177 009e 4091 0000 		lds r20,buffer
+ 178               	.LVL11:
+ 179 00a2 21E0      		ldi r18,lo8(1)
+ 180 00a4 30E0      		ldi r19,hi8(1)
+ 181               	.LVL12:
+ 182 00a6 00C0      		rjmp .L15
+ 183               	.L16:
+ 184               	.LBB12:
+ 185               	.LBB13:
+ 186               	.LBB14:
+ 187               	.LM26:
+ 188 00a8 F901      		movw r30,r18
+ 189 00aa E050      		subi r30,lo8(-(buffer))
+ 190 00ac F040      		sbci r31,hi8(-(buffer))
+ 191 00ae 8081      		ld r24,Z
+ 192 00b0 F901      		movw r30,r18
+ 193 00b2 E050      		subi r30,lo8(-(buffer-1))
+ 194 00b4 F040      		sbci r31,hi8(-(buffer-1))
+ 195 00b6 8083      		st Z,r24
+ 196               	.LM27:
+ 197 00b8 2F5F      		subi r18,lo8(-(1))
+ 198 00ba 3F4F      		sbci r19,hi8(-(1))
+ 199               	.L15:
+ 200 00bc 8091 0000 		lds r24,uart_str_count
+ 201 00c0 90E0      		ldi r25,lo8(0)
+ 202 00c2 2817      		cp r18,r24
+ 203 00c4 3907      		cpc r19,r25
+ 204 00c6 04F0      		brlt .L16
+ 205               	.LBE14:
+ 206               	.LBE13:
+ 207               	.LBE12:
+ 208               	.LM28:
+ 209 00c8 8091 0000 		lds r24,uart_str_count
+ 210 00cc 8150      		subi r24,lo8(-(-1))
+ 211 00ce 8093 0000 		sts uart_str_count,r24
+ 212               	.L14:
+ 213               	.LBE11:
+ 214               	.LBE10:
+ 215               	.LM29:
+ 216 00d2 842F      		mov r24,r20
+ 217               	/* epilogue start */
+ 218 00d4 0895      		ret
+ 219               	.LFE10:
+ 221               	.global	_ZN6Serial5printEPh
+ 223               	_ZN6Serial5printEPh:
+ 224               	.LFB11:
+ 225               	.LM30:
+ 226               	.LVL13:
+ 227               	/* prologue: function */
+ 228               	/* frame size = 0 */
+ 229               	.LM31:
+ 230 00d6 80E0      		ldi r24,lo8(0)
+ 231 00d8 90E0      		ldi r25,hi8(0)
+ 232               	.LVL14:
+ 233 00da 00C0      		rjmp .L24
+ 234               	.L25:
+ 235 00dc 9A01      		movw r18,r20
+ 236               	.L20:
+ 237               	.LBB15:
+ 238               	.LM32:
+ 239 00de 8091 C000 		lds r24,192
+ 240               	.LVL15:
+ 241 00e2 85FF      		sbrs r24,5
+ 242 00e4 00C0      		rjmp .L20
+ 243               	.LM33:
+ 244 00e6 E093 C600 		sts 198,r30
+ 245               	.LM34:
+ 246 00ea C901      		movw r24,r18
+ 247               	.LVL16:
+ 248 00ec 0196      		adiw r24,1
+ 249               	.LVL17:
+ 250               	.L24:
+ 251               	.LM35:
+ 252 00ee FB01      		movw r30,r22
+ 253 00f0 E80F      		add r30,r24
+ 254 00f2 F91F      		adc r31,r25
+ 255 00f4 E081      		ld r30,Z
+ 256 00f6 AC01      		movw r20,r24
+ 257               	.LVL18:
+ 258 00f8 80E0      		ldi r24,lo8(0)
+ 259 00fa 90E0      		ldi r25,hi8(0)
+ 260               	.LVL19:
+ 261 00fc EE23      		tst r30
+ 262 00fe 01F0      		breq .L24
+ 263 0100 00C0      		rjmp .L25
+ 264               	.LBE15:
+ 265               	.LFE11:
+ 267               	.global	_ZN6Serial7printlnEPh
+ 269               	_ZN6Serial7printlnEPh:
+ 270               	.LFB12:
+ 271               	.LM36:
+ 272               	.LVL20:
+ 273 0102 00C0      		rjmp .L36
+ 274               	/* prologue: function */
+ 275               	/* frame size = 0 */
+ 276               	.LVL21:
+ 277               	.L31:
+ 278               	.LBB16:
+ 279               	.LM37:
+ 280 0104 8091 C000 		lds r24,192
+ 281               	.LVL22:
+ 282 0108 85FF      		sbrs r24,5
+ 283 010a 00C0      		rjmp .L31
+ 284               	.LM38:
+ 285 010c E093 C600 		sts 198,r30
+ 286               	.LM39:
+ 287 0110 2F5F      		subi r18,lo8(-(1))
+ 288 0112 3F4F      		sbci r19,hi8(-(1))
+ 289               	.LVL23:
+ 290               	.L35:
+ 291               	.LM40:
+ 292 0114 FB01      		movw r30,r22
+ 293 0116 E20F      		add r30,r18
+ 294 0118 F31F      		adc r31,r19
+ 295 011a E081      		ld r30,Z
+ 296 011c EE23      		tst r30
+ 297 011e 01F4      		brne .L31
+ 298               	.L32:
+ 299               	.LM41:
+ 300 0120 8091 C000 		lds r24,192
+ 301               	.LVL24:
+ 302 0124 85FF      		sbrs r24,5
+ 303 0126 00C0      		rjmp .L32
+ 304               	.LVL25:
+ 305               	.L36:
+ 306 0128 20E0      		ldi r18,lo8(0)
+ 307 012a 30E0      		ldi r19,hi8(0)
+ 308 012c 00C0      		rjmp .L35
+ 309               	.LBE16:
+ 310               	.LFE12:
+ 312               	.global	_ZN6Serial11printCharlnEh
+ 314               	_ZN6Serial11printCharlnEh:
+ 315               	.LFB13:
+ 316               	.LM42:
+ 317               	/* prologue: function */
+ 318               	/* frame size = 0 */
+ 319               	.LVL26:
+ 320               	.L38:
+ 321               	.LM43:
+ 322 012e 8091 C000 		lds r24,192
+ 323               	.LVL27:
+ 324 0132 85FF      		sbrs r24,5
+ 325 0134 00C0      		rjmp .L38
+ 326               	.LM44:
+ 327 0136 6093 C600 		sts 198,r22
+ 328               	.L39:
+ 329               	.LM45:
+ 330 013a 8091 C000 		lds r24,192
+ 331 013e 85FF      		sbrs r24,5
+ 332 0140 00C0      		rjmp .L39
+ 333               	.LM46:
+ 334 0142 8AE0      		ldi r24,lo8(10)
+ 335 0144 8093 C600 		sts 198,r24
+ 336               	/* epilogue start */
+ 337               	.LM47:
+ 338 0148 0895      		ret
+ 339               	.LFE13:
+ 341               	.global	_ZN6Serial9printCharEh
+ 343               	_ZN6Serial9printCharEh:
+ 344               	.LFB14:
+ 345               	.LM48:
+ 346               	/* prologue: function */
+ 347               	/* frame size = 0 */
+ 348               	.LVL28:
+ 349               	.L44:
+ 350               	.LM49:
+ 351 014a 8091 C000 		lds r24,192
+ 352               	.LVL29:
+ 353 014e 85FF      		sbrs r24,5
+ 354 0150 00C0      		rjmp .L44
+ 355               	.LM50:
+ 356 0152 6093 C600 		sts 198,r22
+ 357               	/* epilogue start */
+ 358               	.LM51:
+ 359 0156 0895      		ret
+ 360               	.LFE14:
+ 362               	.global	_ZN6Serial5closeEv
+ 364               	_ZN6Serial5closeEv:
+ 365               	.LFB15:
+ 366               	.LM52:
+ 367               	.LVL30:
+ 368               	/* prologue: function */
+ 369               	/* frame size = 0 */
+ 370               	.LM53:
+ 371 0158 1092 C100 		sts 193,__zero_reg__
+ 372               	.LM54:
+ 373 015c 1092 C200 		sts 194,__zero_reg__
+ 374               	/* epilogue start */
+ 375               	.LM55:
+ 376 0160 0895      		ret
+ 377               	.LFE15:
+ 379               	.global	uart_str_complete
+ 380               	.global	uart_str_complete
+ 381               		.section .bss
+ 384               	uart_str_complete:
+ 385 0000 00        		.skip 1,0
+ 386               	.global	uart_str_count
+ 387               	.global	uart_str_count
+ 390               	uart_str_count:
+ 391 0001 00        		.skip 1,0
+ 392               	.global	buffer
+ 393               	.global	buffer
+ 396               	buffer:
+ 397 0002 0000 0000 		.skip 81,0
+ 397      0000 0000 
+ 397      0000 0000 
+ 397      0000 0000 
+ 397      0000 0000 
+ 398               	.global	serial
+ 399               	.global	serial
+ 402               	serial:
+ 403 0053 00        		.skip 1,0
+ 500               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 Serial.cpp
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:2      *ABS*:0000003f __SREG__
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:3      *ABS*:0000003e __SP_H__
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:4      *ABS*:0000003d __SP_L__
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:5      *ABS*:00000034 __CCP__
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:18     .text:00000000 _Z5shiftv
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:396    .bss:00000002 buffer
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:390    .bss:00000001 uart_str_count
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:56     .text:00000028 _ZN6Serial5beginEv
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:89     .text:00000042 __vector_18
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:142    .text:0000008c _ZN6Serial9availableEv
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:158    .text:00000092 _ZN6Serial4readEv
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:223    .text:000000d6 _ZN6Serial5printEPh
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:269    .text:00000102 _ZN6Serial7printlnEPh
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:314    .text:0000012e _ZN6Serial11printCharlnEh
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:343    .text:0000014a _ZN6Serial9printCharEh
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:364    .text:00000158 _ZN6Serial5closeEv
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:384    .bss:00000000 uart_str_complete
+C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:402    .bss:00000053 serial
+
+UNDEFINED SYMBOLS
+__do_clear_bss

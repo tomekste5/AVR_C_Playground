@@ -1,0 +1,100 @@
+   1               		.file	"main.cpp"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	main
+  18               	main:
+  19               	.LFB6:
+  20               	.LM1:
+  21 0000 0F93      		push r16
+  22 0002 1F93      		push r17
+  23 0004 DF93      		push r29
+  24 0006 CF93      		push r28
+  25 0008 00D0      		rcall .
+  26 000a 00D0      		rcall .
+  27 000c 0F92      		push __tmp_reg__
+  28 000e CDB7      		in r28,__SP_L__
+  29 0010 DEB7      		in r29,__SP_H__
+  30               	/* prologue: function */
+  31               	/* frame size = 5 */
+  32               	.LBB2:
+  33               	.LM2:
+  34 0012 8E01      		movw r16,r28
+  35 0014 0F5F      		subi r16,lo8(-(1))
+  36 0016 1F4F      		sbci r17,hi8(-(1))
+  37 0018 C801      		movw r24,r16
+  38 001a 0E94 0000 		call _ZN6Serial5beginEv
+  39               	.LM3:
+  40 001e 85E0      		ldi r24,lo8(5)
+  41 0020 8A83      		std Y+2,r24
+  42               	.LM4:
+  43 0022 89E0      		ldi r24,lo8(9)
+  44 0024 8B83      		std Y+3,r24
+  45               	.LM5:
+  46 0026 CE01      		movw r24,r28
+  47 0028 0296      		adiw r24,2
+  48 002a 60E0      		ldi r22,lo8(0)
+  49 002c 70E0      		ldi r23,hi8(0)
+  50 002e 42E0      		ldi r20,lo8(2)
+  51 0030 50E0      		ldi r21,hi8(2)
+  52 0032 0E94 0000 		call __eewr_block_m328p
+  53               	.LM6:
+  54 0036 CE01      		movw r24,r28
+  55 0038 0496      		adiw r24,4
+  56 003a 60E0      		ldi r22,lo8(0)
+  57 003c 70E0      		ldi r23,hi8(0)
+  58 003e 42E0      		ldi r20,lo8(2)
+  59 0040 50E0      		ldi r21,hi8(2)
+  60 0042 0E94 0000 		call __eerd_block_m328p
+  61               	.LM7:
+  62 0046 6C81      		ldd r22,Y+4
+  63 0048 605D      		subi r22,lo8(-(48))
+  64 004a C801      		movw r24,r16
+  65 004c 0E94 0000 		call _ZN6Serial11printCharlnEh
+  66               	.LM8:
+  67 0050 6D81      		ldd r22,Y+5
+  68 0052 605D      		subi r22,lo8(-(48))
+  69 0054 C801      		movw r24,r16
+  70 0056 0E94 0000 		call _ZN6Serial11printCharlnEh
+  71               	.LM9:
+  72 005a 8FEF      		ldi r24,lo8(-1)
+  73 005c 84B9      		out 36-32,r24
+  74               	.LM10:
+  75 005e 95B1      		in r25,37-32
+  76 0060 85B9      		out 37-32,r24
+  77               	.LBE2:
+  78               	.LM11:
+  79 0062 80E0      		ldi r24,lo8(0)
+  80 0064 90E0      		ldi r25,hi8(0)
+  81               	/* epilogue start */
+  82 0066 0F90      		pop __tmp_reg__
+  83 0068 0F90      		pop __tmp_reg__
+  84 006a 0F90      		pop __tmp_reg__
+  85 006c 0F90      		pop __tmp_reg__
+  86 006e 0F90      		pop __tmp_reg__
+  87 0070 CF91      		pop r28
+  88 0072 DF91      		pop r29
+  89 0074 1F91      		pop r17
+  90 0076 0F91      		pop r16
+  91 0078 0895      		ret
+  92               	.LFE6:
+ 118               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.cpp
+C:\Users\airph\AppData\Local\Temp/ccna9MbZ.s:2      *ABS*:0000003f __SREG__
+C:\Users\airph\AppData\Local\Temp/ccna9MbZ.s:3      *ABS*:0000003e __SP_H__
+C:\Users\airph\AppData\Local\Temp/ccna9MbZ.s:4      *ABS*:0000003d __SP_L__
+C:\Users\airph\AppData\Local\Temp/ccna9MbZ.s:5      *ABS*:00000034 __CCP__
+C:\Users\airph\AppData\Local\Temp/ccna9MbZ.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\airph\AppData\Local\Temp/ccna9MbZ.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\airph\AppData\Local\Temp/ccna9MbZ.s:18     .text:00000000 main
+
+UNDEFINED SYMBOLS
+_ZN6Serial5beginEv
+__eewr_block_m328p
+__eerd_block_m328p
+_ZN6Serial11printCharlnEh
