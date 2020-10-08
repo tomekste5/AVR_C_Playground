@@ -1,11 +1,11 @@
-#define __AVR_ATmega328P__
+#include "util.h"
+
+#include <avr/interrupt.h>
 
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdint.h>
 
-#define BAUD 9600
-#define F_CPU 16000000UL
 #include <util/setbaud.h>
 
 class Serial{

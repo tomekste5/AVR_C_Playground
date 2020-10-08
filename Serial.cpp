@@ -1,6 +1,4 @@
-#define __AVR_ATmega328P__
-#include <Serial.h>
-#include <avr/interrupt.h>
+#include "Serial.h"
 
 #define UART_MAXSTRLEN 80
 
@@ -80,6 +78,8 @@ void Serial::print(unsigned char data[]){
           i++;                          
         }
       } 
+      while (!( UCSR0A & (1<<UDRE0))); 
+      UDR0 = '\n';
 }
 void Serial::println(unsigned char data[]){
     int i = 0;
@@ -111,5 +111,7 @@ void Serial::close(){
 
     UCSR0B = (0<<RXEN0)|(0<<TXEN0)|(0<<RXCIE0);  // Asynchron 8N1 
     UCSR0C = (0<<USBS0)|(0<<UCSZ00);   
+
+    cli();
 
 }

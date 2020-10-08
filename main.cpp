@@ -1,10 +1,14 @@
-#include <Serial.h>
-#include <avr/eeprom.h>
-struct test
-{
-	uint8_t t;
-	uint8_t x;
-};
+#include "util.h"
+
+#include <avr/io.h>
+#include <util/delay.h>
+#include <stdint.h>
+
+#include <util/setbaud.h>
+
+#include "Serial.h"
+#include "TWI.h"
+
 
 
 int main(void)
@@ -12,25 +16,39 @@ int main(void)
 	Serial serial;
 	serial.begin();
 
-	test tesst;
-	test testRead;
+	TWI twi; 
+	twi.init();
 
-	tesst.t = 5;
-	tesst.x = 9;
+	twi.start();
+	twi.write(0x68);
+	twi.write(0x00);
+	twi.stop();
 
-	eeprom_write_block((void *) &tesst,(void*) 0,sizeof(tesst));
-	eeprom_read_block((void *) &testRead,(void *) 0,sizeof(testRead));
+	twi.start();
+	twi.write(0x68);
+	twi.write(0x1c);
+	twi.write(0x10);
+	twi.stop();
+	
+	twi.start();
+	twi.write(0x68);
+	twi.write(0x1b);
+	twi.write(0x08);
+	twi.stop();
+
+	twi.start();
+	unsigned char array[14];
+	twi.read(array,0x68,14);
+	
+
+	//uint16_t acc_x = (array[0] << 8) | array[1];
+	
+	serial.println((unsigned char*) "Vertical acceleration");
+	//serial.println((unsigned char*) &acc_x);
 
 
-	char my_char = testRead.t + '0';
-	serial.printCharln(my_char);
-	char my_char2 = testRead.x + '0';
-	serial.printCharln(my_char2);
 
-	/*DDRB = 0xff;
-	PORTB = 0xff;*/
-
-	while (1 == 0)
+	/*while (1 == 0)
 	{
 		while (serial.available() < 2);
 
@@ -46,7 +64,12 @@ int main(void)
 		char my_cha2r = serial.available() + '0';
 		serial.printCharln(my_cha2r);
 
-	}
+	}*/
+	_delay_ms(200);
+	_delay_ms(200);
+	_delay_ms(200);
+	_delay_ms(200);
+	_delay_ms(200);
+	_delay_ms(200);
 	
 }
-

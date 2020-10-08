@@ -64,7 +64,7 @@
   74 003a 8093 C100 		sts 193,r24
   75               	.LM11:
   76               	/* #APP */
-  77               	 ;  27 "Serial.cpp" 1
+  77               	 ;  25 "Serial.cpp" 1
   78 003e 7894      		sei
   79               	 ;  0 "" 2
   80               	/* epilogue start */
@@ -345,54 +345,60 @@
  371 0158 1092 C100 		sts 193,__zero_reg__
  372               	.LM54:
  373 015c 1092 C200 		sts 194,__zero_reg__
- 374               	/* epilogue start */
- 375               	.LM55:
- 376 0160 0895      		ret
- 377               	.LFE15:
- 379               	.global	uart_str_complete
- 380               	.global	uart_str_complete
- 381               		.section .bss
- 384               	uart_str_complete:
- 385 0000 00        		.skip 1,0
- 386               	.global	uart_str_count
- 387               	.global	uart_str_count
- 390               	uart_str_count:
- 391 0001 00        		.skip 1,0
- 392               	.global	buffer
- 393               	.global	buffer
- 396               	buffer:
- 397 0002 0000 0000 		.skip 81,0
- 397      0000 0000 
- 397      0000 0000 
- 397      0000 0000 
- 397      0000 0000 
- 398               	.global	serial
- 399               	.global	serial
- 402               	serial:
- 403 0053 00        		.skip 1,0
- 500               	.Letext0:
+ 374               	.LM55:
+ 375               	/* #APP */
+ 376               	 ;  115 "Serial.cpp" 1
+ 377 0160 F894      		cli
+ 378               	 ;  0 "" 2
+ 379               	/* epilogue start */
+ 380               	.LM56:
+ 381               	/* #NOAPP */
+ 382 0162 0895      		ret
+ 383               	.LFE15:
+ 385               	.global	uart_str_complete
+ 386               	.global	uart_str_complete
+ 387               		.section .bss
+ 390               	uart_str_complete:
+ 391 0000 00        		.skip 1,0
+ 392               	.global	uart_str_count
+ 393               	.global	uart_str_count
+ 396               	uart_str_count:
+ 397 0001 00        		.skip 1,0
+ 398               	.global	buffer
+ 399               	.global	buffer
+ 402               	buffer:
+ 403 0002 0000 0000 		.skip 81,0
+ 403      0000 0000 
+ 403      0000 0000 
+ 403      0000 0000 
+ 403      0000 0000 
+ 404               	.global	serial
+ 405               	.global	serial
+ 408               	serial:
+ 409 0053 00        		.skip 1,0
+ 506               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 Serial.cpp
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:2      *ABS*:0000003f __SREG__
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:3      *ABS*:0000003e __SP_H__
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:4      *ABS*:0000003d __SP_L__
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:5      *ABS*:00000034 __CCP__
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:18     .text:00000000 _Z5shiftv
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:396    .bss:00000002 buffer
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:390    .bss:00000001 uart_str_count
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:56     .text:00000028 _ZN6Serial5beginEv
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:89     .text:00000042 __vector_18
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:142    .text:0000008c _ZN6Serial9availableEv
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:158    .text:00000092 _ZN6Serial4readEv
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:223    .text:000000d6 _ZN6Serial5printEPh
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:269    .text:00000102 _ZN6Serial7printlnEPh
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:314    .text:0000012e _ZN6Serial11printCharlnEh
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:343    .text:0000014a _ZN6Serial9printCharEh
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:364    .text:00000158 _ZN6Serial5closeEv
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:384    .bss:00000000 uart_str_complete
-C:\Users\airph\AppData\Local\Temp/cc6As2mO.s:402    .bss:00000053 serial
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:2      *ABS*:0000003f __SREG__
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:3      *ABS*:0000003e __SP_H__
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:4      *ABS*:0000003d __SP_L__
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:5      *ABS*:00000034 __CCP__
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:18     .text:00000000 _Z5shiftv
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:402    .bss:00000002 buffer
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:396    .bss:00000001 uart_str_count
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:56     .text:00000028 _ZN6Serial5beginEv
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:89     .text:00000042 __vector_18
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:142    .text:0000008c _ZN6Serial9availableEv
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:158    .text:00000092 _ZN6Serial4readEv
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:223    .text:000000d6 _ZN6Serial5printEPh
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:269    .text:00000102 _ZN6Serial7printlnEPh
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:314    .text:0000012e _ZN6Serial11printCharlnEh
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:343    .text:0000014a _ZN6Serial9printCharEh
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:364    .text:00000158 _ZN6Serial5closeEv
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:390    .bss:00000000 uart_str_complete
+C:\Users\airph\AppData\Local\Temp/ccGQgdXl.s:408    .bss:00000053 serial
 
 UNDEFINED SYMBOLS
 __do_clear_bss

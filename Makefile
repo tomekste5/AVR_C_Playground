@@ -86,6 +86,7 @@ SRC =
 # List C++ source files here. (C dependencies are automatically generated.)
 CPPSRC = $(TARGET).cpp
 CPPSRC += Serial.cpp
+CPPSRC += TWI.cpp
 
 
 # List Assembler source files here.
