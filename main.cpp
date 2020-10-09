@@ -9,14 +9,13 @@
 #include "Serial.h"
 #include "TWI.h"
 
-
-
+unsigned char array[15] = "12345678912345";
+TWI twi; 
+Serial ssserial;
 int main(void)
 {
-	Serial serial;
-	serial.begin();
+	ssserial.begin();
 
-	TWI twi; 
 	twi.init();
 
 	twi.start();
@@ -36,14 +35,13 @@ int main(void)
 	twi.write(0x08);
 	twi.stop();
 
-	twi.start();
-	unsigned char array[14];
-	twi.read(array,0x68,14);
+	/*twi.start();
+	twi.read(array,0x68,14);*/
 	
 
 	//uint16_t acc_x = (array[0] << 8) | array[1];
 	
-	serial.println((unsigned char*) "Vertical acceleration");
+	//serial.println((unsigned char*) "Vertical acceleration");
 	//serial.println((unsigned char*) &acc_x);
 
 
