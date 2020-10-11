@@ -6,275 +6,415 @@
    6               	__tmp_reg__ = 0
    7               	__zero_reg__ = 1
   15               	.Ltext0:
-  16               	.global	_ZN3TWI4initEv
-  18               	_ZN3TWI4initEv:
-  19               	.LFB9:
+  16               	.global	_Z11shiftBufferv
+  18               	_Z11shiftBufferv:
+  19               	.LFB6:
   20               	.LM1:
-  21               	.LVL0:
-  22               	/* prologue: function */
-  23               	/* frame size = 0 */
-  24               	.LM2:
-  25 0000 1092 BA00 		sts 186,__zero_reg__
-  26               	.LM3:
-  27 0004 1092 B800 		sts 184,__zero_reg__
-  28               	.LM4:
-  29 0008 84E0      		ldi r24,lo8(4)
-  30               	.LVL1:
-  31 000a 8093 BC00 		sts 188,r24
-  32               	/* epilogue start */
-  33               	.LM5:
-  34 000e 0895      		ret
-  35               	.LFE9:
-  37               	.global	_ZN3TWI4stopEv
-  39               	_ZN3TWI4stopEv:
-  40               	.LFB11:
-  41               	.LM6:
-  42               	/* prologue: function */
-  43               	/* frame size = 0 */
-  44               	.LVL2:
-  45               	.L4:
-  46               	.LM7:
-  47 0010 8091 BC00 		lds r24,188
-  48               	.LVL3:
-  49 0014 87FD      		sbrc r24,7
-  50 0016 00C0      		rjmp .L4
-  51               	.LM8:
-  52 0018 84E9      		ldi r24,lo8(-108)
-  53 001a 8093 BC00 		sts 188,r24
-  54               	/* epilogue start */
-  55               	.LM9:
-  56 001e 0895      		ret
-  57               	.LFE11:
-  59               		.data
-  60               	.LC0:
-  61 0000 636F 756C 		.string	"could not sent start bit"
-  61      6420 6E6F 
-  61      7420 7365 
-  61      6E74 2073 
-  61      7461 7274 
-  62               		.text
-  63               	.global	_ZN3TWI5startEv
-  65               	_ZN3TWI5startEv:
-  66               	.LFB10:
-  67               	.LM10:
-  68               	.LVL4:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 9091 0000 		lds r25,indexWrite
+  25 0004 E0E0      		ldi r30,lo8(writeBuffer)
+  26 0006 F0E0      		ldi r31,hi8(writeBuffer)
+  27               	.L2:
+  28               	.LBB4:
+  29               	.LM3:
+  30 0008 8181      		ldd r24,Z+1
+  31 000a 8193      		st Z+,r24
+  32               	.LM4:
+  33 000c 80E0      		ldi r24,hi8(writeBuffer+79)
+  34 000e E030      		cpi r30,lo8(writeBuffer+79)
+  35 0010 F807      		cpc r31,r24
+  36 0012 01F4      		brne .L2
+  37 0014 9F54      		subi r25,lo8(-(-79))
+  38 0016 9093 0000 		sts indexWrite,r25
+  39               	/* epilogue start */
+  40               	.LBE4:
+  41               	.LM5:
+  42 001a 0895      		ret
+  43               	.LFE6:
+  45               	.global	_Z8sentAddrh
+  47               	_Z8sentAddrh:
+  48               	.LFB7:
+  49               	.LM6:
+  50               	.LVL0:
+  51               	/* prologue: function */
+  52               	/* frame size = 0 */
+  53               	.LM7:
+  54 001c 8093 BB00 		sts 187,r24
+  55               	.LM8:
+  56 0020 84E8      		ldi r24,lo8(-124)
+  57               	.LVL1:
+  58 0022 8093 BC00 		sts 188,r24
+  59               	/* epilogue start */
+  60               	.LM9:
+  61 0026 0895      		ret
+  62               	.LFE7:
+  64               	.global	_ZN3TWI4stopEv
+  66               	_ZN3TWI4stopEv:
+  67               	.LFB8:
+  68               	.LM10:
   69               	/* prologue: function */
   70               	/* frame size = 0 */
-  71               	.LM11:
-  72 0020 84EA      		ldi r24,lo8(-92)
-  73               	.LVL5:
-  74 0022 8093 BC00 		sts 188,r24
-  75               	.L8:
-  76               	.LM12:
-  77 0026 8091 B900 		lds r24,185
-  78 002a 87FF      		sbrs r24,7
-  79 002c 00C0      		rjmp .L8
-  80               	.LM13:
-  81 002e 8091 B900 		lds r24,185
-  82 0032 887F      		andi r24,lo8(-8)
-  83 0034 8830      		cpi r24,lo8(8)
-  84 0036 01F0      		breq .L10
+  71               	.LVL2:
+  72               	.L8:
+  73               	.LM11:
+  74 0028 8091 BC00 		lds r24,188
+  75               	.LVL3:
+  76 002c 87FD      		sbrc r24,7
+  77 002e 00C0      		rjmp .L8
+  78               	.LM12:
+  79 0030 8091 0000 		lds r24,finishFLag
+  80 0034 8823      		tst r24
+  81 0036 01F0      		breq .L10
+  82               	.LM13:
+  83 0038 84E9      		ldi r24,lo8(-108)
+  84 003a 8093 BC00 		sts 188,r24
   85               	.LM14:
-  86 0038 80E0      		ldi r24,lo8(sserial)
-  87 003a 90E0      		ldi r25,hi8(sserial)
-  88 003c 60E0      		ldi r22,lo8(.LC0)
-  89 003e 70E0      		ldi r23,hi8(.LC0)
-  90 0040 0E94 0000 		call _ZN6Serial7printlnEPh
-  91               	.L10:
-  92 0044 0895      		ret
-  93               	.LFE10:
-  95               		.data
-  96               	.LC1:
-  97 0019 5472 616E 		.string	"Transmitting data was not sucessfull!"
-  97      736D 6974 
-  97      7469 6E67 
-  97      2064 6174 
-  97      6120 7761 
-  98               		.text
-  99               	.global	_ZN3TWI5writeEh
- 101               	_ZN3TWI5writeEh:
- 102               	.LFB8:
- 103               	.LM15:
- 104               	.LVL6:
- 105               	/* prologue: function */
- 106               	/* frame size = 0 */
- 107               	.LM16:
- 108 0046 6093 BB00 		sts 187,r22
- 109               	.LM17:
- 110 004a 84E8      		ldi r24,lo8(-124)
- 111               	.LVL7:
- 112 004c 8093 BC00 		sts 188,r24
- 113               	.L13:
- 114               	.LM18:
- 115 0050 8091 BC00 		lds r24,188
- 116 0054 87FD      		sbrc r24,7
- 117 0056 00C0      		rjmp .L13
- 118               	.LM19:
- 119 0058 8091 B900 		lds r24,185
- 120 005c 887F      		andi r24,lo8(-8)
- 121 005e 8832      		cpi r24,lo8(40)
- 122 0060 01F0      		breq .L15
- 123               	.LM20:
- 124 0062 80E0      		ldi r24,lo8(sserial)
- 125 0064 90E0      		ldi r25,hi8(sserial)
- 126 0066 60E0      		ldi r22,lo8(.LC1)
- 127 0068 70E0      		ldi r23,hi8(.LC1)
- 128               	.LVL8:
- 129 006a 0E94 0000 		call _ZN6Serial7printlnEPh
- 130               	.LVL9:
- 131               	.L15:
- 132 006e 0895      		ret
- 133               	.LFE8:
- 135               		.data
- 136               	.LC2:
- 137 003f 636F 756C 		.string	"could not sent sentAddr"
- 137      6420 6E6F 
- 137      7420 7365 
- 137      6E74 2073 
- 137      656E 7441 
- 138               		.text
- 139               	.global	_Z8sentAddrh
- 141               	_Z8sentAddrh:
- 142               	.LFB6:
- 143               	.LM21:
- 144               	.LVL10:
- 145               	/* prologue: function */
- 146               	/* frame size = 0 */
- 147               	.LM22:
- 148 0070 8093 BB00 		sts 187,r24
- 149               	.LM23:
- 150 0074 84E8      		ldi r24,lo8(-124)
- 151               	.LVL11:
- 152 0076 8093 BC00 		sts 188,r24
- 153               	.L18:
- 154               	.LM24:
- 155 007a 8091 BC00 		lds r24,188
- 156 007e 87FD      		sbrc r24,7
- 157 0080 00C0      		rjmp .L18
- 158               	.LM25:
- 159 0082 8091 B900 		lds r24,185
- 160 0086 887F      		andi r24,lo8(-8)
- 161 0088 8831      		cpi r24,lo8(24)
- 162 008a 01F0      		breq .L20
- 163               	.LM26:
- 164 008c 80E0      		ldi r24,lo8(sserial)
- 165 008e 90E0      		ldi r25,hi8(sserial)
- 166 0090 60E0      		ldi r22,lo8(.LC2)
- 167 0092 70E0      		ldi r23,hi8(.LC2)
- 168 0094 0E94 0000 		call _ZN6Serial7printlnEPh
- 169               	.L20:
- 170 0098 0895      		ret
- 171               	.LFE6:
- 173               	.global	_ZN3TWI4readEPhhi
- 175               	_ZN3TWI4readEPhhi:
- 176               	.LFB7:
- 177               	.LM27:
- 178               	.LVL12:
- 179 009a 0F93      		push r16
- 180 009c 1F93      		push r17
- 181 009e CF93      		push r28
- 182 00a0 DF93      		push r29
- 183               	/* prologue: function */
- 184               	/* frame size = 0 */
- 185 00a2 8B01      		movw r16,r22
- 186 00a4 842F      		mov r24,r20
- 187               	.LVL13:
- 188 00a6 E901      		movw r28,r18
- 189               	.LBB6:
- 190               	.LM28:
- 191 00a8 8160      		ori r24,lo8(1)
- 192 00aa 0E94 0000 		call _Z8sentAddrh
- 193               	.LVL14:
- 194 00ae 20E0      		ldi r18,lo8(0)
- 195 00b0 30E0      		ldi r19,hi8(0)
- 196               	.LVL15:
- 197               	.LBB7:
- 198               	.LM29:
- 199 00b2 AE01      		movw r20,r28
- 200 00b4 4250      		subi r20,lo8(-(-2))
- 201 00b6 5040      		sbci r21,hi8(-(-2))
- 202               	.LM30:
- 203 00b8 94E8      		ldi r25,lo8(-124)
- 204 00ba 00C0      		rjmp .L23
- 205               	.L25:
- 206               	.LM31:
- 207 00bc 8091 BB00 		lds r24,187
- 208 00c0 F801      		movw r30,r16
- 209 00c2 E20F      		add r30,r18
- 210 00c4 F31F      		adc r31,r19
- 211 00c6 8083      		st Z,r24
- 212               	.LM32:
- 213 00c8 9093 BC00 		sts 188,r25
- 214               	.L24:
- 215               	.LM33:
- 216 00cc 8091 BC00 		lds r24,188
- 217 00d0 87FD      		sbrc r24,7
- 218 00d2 00C0      		rjmp .L24
- 219               	.LM34:
- 220 00d4 2F5F      		subi r18,lo8(-(1))
- 221 00d6 3F4F      		sbci r19,hi8(-(1))
- 222               	.L23:
- 223 00d8 2417      		cp r18,r20
- 224 00da 3507      		cpc r19,r21
- 225 00dc 04F0      		brlt .L25
- 226               	.LBE7:
- 227               	.LM35:
- 228 00de 8091 BB00 		lds r24,187
- 229 00e2 F801      		movw r30,r16
- 230 00e4 EC0F      		add r30,r28
- 231 00e6 FD1F      		adc r31,r29
- 232 00e8 3297      		sbiw r30,2
- 233 00ea 8193      		st Z+,r24
- 234               	.LM36:
- 235 00ec 8AE0      		ldi r24,lo8(10)
- 236 00ee 8083      		st Z,r24
- 237               	.LM37:
- 238 00f0 80E8      		ldi r24,lo8(-128)
- 239 00f2 8093 BC00 		sts 188,r24
- 240               	.L26:
- 241               	.LBB8:
- 242               	.LBB9:
- 243               	.LM38:
- 244 00f6 8091 BC00 		lds r24,188
- 245 00fa 87FD      		sbrc r24,7
- 246 00fc 00C0      		rjmp .L26
- 247               	.LM39:
- 248 00fe 84E9      		ldi r24,lo8(-108)
- 249 0100 8093 BC00 		sts 188,r24
- 250               	/* epilogue start */
- 251               	.LBE9:
- 252               	.LBE8:
- 253               	.LBE6:
- 254               	.LM40:
- 255 0104 DF91      		pop r29
- 256 0106 CF91      		pop r28
- 257               	.LVL16:
- 258 0108 1F91      		pop r17
- 259 010a 0F91      		pop r16
- 260               	.LVL17:
- 261 010c 0895      		ret
- 262               	.LFE7:
- 264               	.global	sserial
- 265               	.global	sserial
- 266               		.section .bss
- 269               	sserial:
- 270 0000 00        		.skip 1,0
- 335               	.Letext0:
+  86 003e 1092 0000 		sts finishFLag,__zero_reg__
+  87               	.L10:
+  88 0042 0895      		ret
+  89               	.LFE8:
+  91               	.global	_ZN3TWI4readEPhhi
+  93               	_ZN3TWI4readEPhhi:
+  94               	.LFB9:
+  95               	.LM15:
+  96               	.LVL4:
+  97               	/* prologue: function */
+  98               	/* frame size = 0 */
+  99               	.LM16:
+ 100 0044 7093 0000 		sts (readBuffer)+1,r23
+ 101 0048 6093 0000 		sts readBuffer,r22
+ 102               	.LM17:
+ 103 004c 2093 0000 		sts requestedBytes,r18
+ 104               	.LM18:
+ 105 0050 ECEB      		ldi r30,lo8(188)
+ 106 0052 F0E0      		ldi r31,hi8(188)
+ 107 0054 8081      		ld r24,Z
+ 108               	.LVL5:
+ 109 0056 8160      		ori r24,lo8(1)
+ 110 0058 8083      		st Z,r24
+ 111               	.LM19:
+ 112 005a 4160      		ori r20,lo8(1)
+ 113               	.LVL6:
+ 114               	.LBB5:
+ 115               	.LBB6:
+ 116               	.LM20:
+ 117 005c 4093 BB00 		sts 187,r20
+ 118               	.LM21:
+ 119 0060 84E8      		ldi r24,lo8(-124)
+ 120 0062 8083      		st Z,r24
+ 121               	/* epilogue start */
+ 122               	.LBE6:
+ 123               	.LBE5:
+ 124               	.LM22:
+ 125 0064 0895      		ret
+ 126               	.LFE9:
+ 128               	.global	__vector_24
+ 130               	__vector_24:
+ 131               	.LFB10:
+ 132               	.LM23:
+ 133 0066 1F92      		push __zero_reg__
+ 134 0068 0F92      		push r0
+ 135 006a 0FB6      		in r0,__SREG__
+ 136 006c 0F92      		push r0
+ 137 006e 1124      		clr __zero_reg__
+ 138 0070 2F93      		push r18
+ 139 0072 3F93      		push r19
+ 140 0074 4F93      		push r20
+ 141 0076 5F93      		push r21
+ 142 0078 6F93      		push r22
+ 143 007a 7F93      		push r23
+ 144 007c 8F93      		push r24
+ 145 007e 9F93      		push r25
+ 146 0080 AF93      		push r26
+ 147 0082 BF93      		push r27
+ 148 0084 EF93      		push r30
+ 149 0086 FF93      		push r31
+ 150               	/* prologue: Signal */
+ 151               	/* frame size = 0 */
+ 152               	.LM24:
+ 153 0088 8091 B900 		lds r24,185
+ 154 008c 887F      		andi r24,lo8(-8)
+ 155 008e 8832      		cpi r24,lo8(40)
+ 156 0090 01F4      		brne .L15
+ 157               	.LM25:
+ 158 0092 8091 0000 		lds r24,indexWrite
+ 159 0096 8823      		tst r24
+ 160 0098 01F0      		breq .L16
+ 161               	.LM26:
+ 162 009a 1092 0000 		sts finishFLag,__zero_reg__
+ 163               	.LM27:
+ 164 009e 8091 0000 		lds r24,writeBuffer
+ 165 00a2 8093 BB00 		sts 187,r24
+ 166               	.LM28:
+ 167 00a6 0E94 0000 		call _Z11shiftBufferv
+ 168               	.LM29:
+ 169 00aa 84E8      		ldi r24,lo8(-124)
+ 170 00ac 00C0      		rjmp .L22
+ 171               	.L16:
+ 172               	.LM30:
+ 173 00ae 81E0      		ldi r24,lo8(1)
+ 174 00b0 8093 0000 		sts finishFLag,r24
+ 175               	.LM31:
+ 176 00b4 8091 BC00 		lds r24,188
+ 177 00b8 00C0      		rjmp .L22
+ 178               	.L15:
+ 179               	.LM32:
+ 180 00ba 8091 B900 		lds r24,185
+ 181 00be 9091 B900 		lds r25,185
+ 182 00c2 887F      		andi r24,lo8(-8)
+ 183 00c4 8034      		cpi r24,lo8(64)
+ 184 00c6 01F0      		breq .L21
+ 185 00c8 987F      		andi r25,lo8(-8)
+ 186 00ca 9035      		cpi r25,lo8(80)
+ 187 00cc 01F0      		breq .+2
+ 188 00ce 00C0      		rjmp .L20
+ 189               	.L21:
+ 190               	.LM33:
+ 191 00d0 8091 0000 		lds r24,indexRead
+ 192 00d4 9091 0000 		lds r25,requestedBytes
+ 193 00d8 282F      		mov r18,r24
+ 194 00da 30E0      		ldi r19,lo8(0)
+ 195 00dc 8917      		cp r24,r25
+ 196 00de 00F4      		brsh .L19
+ 197               	.LM34:
+ 198 00e0 8091 BB00 		lds r24,187
+ 199 00e4 E091 0000 		lds r30,readBuffer
+ 200 00e8 F091 0000 		lds r31,(readBuffer)+1
+ 201 00ec E20F      		add r30,r18
+ 202 00ee F31F      		adc r31,r19
+ 203 00f0 8083      		st Z,r24
+ 204               	.LM35:
+ 205 00f2 8091 BC00 		lds r24,188
+ 206 00f6 8464      		ori r24,lo8(68)
+ 207 00f8 8093 BC00 		sts 188,r24
+ 208               	.LM36:
+ 209 00fc 8091 0000 		lds r24,indexRead
+ 210 0100 8F5F      		subi r24,lo8(-(1))
+ 211 0102 8093 0000 		sts indexRead,r24
+ 212 0106 00C0      		rjmp .L20
+ 213               	.L19:
+ 214               	.LM37:
+ 215 0108 892F      		mov r24,r25
+ 216 010a 90E0      		ldi r25,lo8(0)
+ 217 010c 0197      		sbiw r24,1
+ 218 010e 2817      		cp r18,r24
+ 219 0110 3907      		cpc r19,r25
+ 220 0112 01F4      		brne .L20
+ 221               	.LM38:
+ 222 0114 8091 BB00 		lds r24,187
+ 223 0118 E091 0000 		lds r30,readBuffer
+ 224 011c F091 0000 		lds r31,(readBuffer)+1
+ 225 0120 E20F      		add r30,r18
+ 226 0122 F31F      		adc r31,r19
+ 227 0124 8083      		st Z,r24
+ 228               	.LM39:
+ 229 0126 8091 BC00 		lds r24,188
+ 230 012a 8460      		ori r24,lo8(4)
+ 231 012c 8093 BC00 		sts 188,r24
+ 232               	.LM40:
+ 233 0130 8091 0000 		lds r24,indexRead
+ 234 0134 8F5F      		subi r24,lo8(-(1))
+ 235 0136 8093 0000 		sts indexRead,r24
+ 236               	.LM41:
+ 237 013a E091 0000 		lds r30,readBuffer
+ 238 013e F091 0000 		lds r31,(readBuffer)+1
+ 239 0142 E80F      		add r30,r24
+ 240 0144 F11D      		adc r31,__zero_reg__
+ 241 0146 8AE0      		ldi r24,lo8(10)
+ 242 0148 8083      		st Z,r24
+ 243               	.LM42:
+ 244 014a 84E9      		ldi r24,lo8(-108)
+ 245               	.L22:
+ 246 014c 8093 BC00 		sts 188,r24
+ 247               	.L20:
+ 248               	/* epilogue start */
+ 249               	.LM43:
+ 250 0150 FF91      		pop r31
+ 251 0152 EF91      		pop r30
+ 252 0154 BF91      		pop r27
+ 253 0156 AF91      		pop r26
+ 254 0158 9F91      		pop r25
+ 255 015a 8F91      		pop r24
+ 256 015c 7F91      		pop r23
+ 257 015e 6F91      		pop r22
+ 258 0160 5F91      		pop r21
+ 259 0162 4F91      		pop r20
+ 260 0164 3F91      		pop r19
+ 261 0166 2F91      		pop r18
+ 262 0168 0F90      		pop r0
+ 263 016a 0FBE      		out __SREG__,r0
+ 264 016c 0F90      		pop r0
+ 265 016e 1F90      		pop __zero_reg__
+ 266 0170 1895      		reti
+ 267               	.LFE10:
+ 269               	.global	_ZN3TWI5writeEh
+ 271               	_ZN3TWI5writeEh:
+ 272               	.LFB11:
+ 273               	.LM44:
+ 274               	.LVL7:
+ 275               	/* prologue: function */
+ 276               	/* frame size = 0 */
+ 277               	.LM45:
+ 278 0172 8091 0000 		lds r24,indexWrite
+ 279               	.LVL8:
+ 280 0176 E0E0      		ldi r30,lo8(writeBuffer)
+ 281 0178 F0E0      		ldi r31,hi8(writeBuffer)
+ 282 017a E80F      		add r30,r24
+ 283 017c F11D      		adc r31,__zero_reg__
+ 284 017e 6083      		st Z,r22
+ 285               	.LM46:
+ 286 0180 8F5F      		subi r24,lo8(-(1))
+ 287 0182 8093 0000 		sts indexWrite,r24
+ 288               	.LM47:
+ 289 0186 ECEB      		ldi r30,lo8(188)
+ 290 0188 F0E0      		ldi r31,hi8(188)
+ 291 018a 8081      		ld r24,Z
+ 292 018c 8160      		ori r24,lo8(1)
+ 293 018e 8083      		st Z,r24
+ 294               	.LM48:
+ 295 0190 8081      		ld r24,Z
+ 296 0192 8083      		st Z,r24
+ 297               	/* epilogue start */
+ 298               	.LM49:
+ 299 0194 0895      		ret
+ 300               	.LFE11:
+ 302               	.global	_ZN3TWI4initEv
+ 304               	_ZN3TWI4initEv:
+ 305               	.LFB12:
+ 306               	.LM50:
+ 307               	.LVL9:
+ 308               	/* prologue: function */
+ 309               	/* frame size = 0 */
+ 310               	.LM51:
+ 311 0196 87B1      		in r24,39-32
+ 312               	.LVL10:
+ 313 0198 8063      		ori r24,lo8(48)
+ 314 019a 87B9      		out 39-32,r24
+ 315               	.LM52:
+ 316 019c 88B1      		in r24,40-32
+ 317 019e 8063      		ori r24,lo8(48)
+ 318 01a0 88B9      		out 40-32,r24
+ 319               	.LM53:
+ 320 01a2 1092 B800 		sts 184,__zero_reg__
+ 321               	.LM54:
+ 322 01a6 1092 B900 		sts 185,__zero_reg__
+ 323               	.LM55:
+ 324 01aa 84E4      		ldi r24,lo8(68)
+ 325 01ac 8093 BC00 		sts 188,r24
+ 326               	/* epilogue start */
+ 327               	.LM56:
+ 328 01b0 0895      		ret
+ 329               	.LFE12:
+ 331               		.data
+ 332               	.LC0:
+ 333 0000 636F 756C 		.string	"could not sent start bit"
+ 333      6420 6E6F 
+ 333      7420 7365 
+ 333      6E74 2073 
+ 333      7461 7274 
+ 334               		.text
+ 335               	.global	_ZN3TWI5startEv
+ 337               	_ZN3TWI5startEv:
+ 338               	.LFB13:
+ 339               	.LM57:
+ 340               	.LVL11:
+ 341               	/* prologue: function */
+ 342               	/* frame size = 0 */
+ 343               	.LM58:
+ 344 01b2 8091 BC00 		lds r24,188
+ 345               	.LVL12:
+ 346 01b6 8B7E      		andi r24,lo8(-21)
+ 347 01b8 8093 BC00 		sts 188,r24
+ 348               	.LM59:
+ 349 01bc 8091 BC00 		lds r24,188
+ 350 01c0 8460      		ori r24,lo8(4)
+ 351 01c2 8093 BC00 		sts 188,r24
+ 352               	.LM60:
+ 353 01c6 84EA      		ldi r24,lo8(-92)
+ 354 01c8 8093 BC00 		sts 188,r24
+ 355               	.L28:
+ 356               	.LM61:
+ 357 01cc 8091 B900 		lds r24,185
+ 358 01d0 87FF      		sbrs r24,7
+ 359 01d2 00C0      		rjmp .L28
+ 360               	.LM62:
+ 361 01d4 8091 B900 		lds r24,185
+ 362 01d8 9091 B900 		lds r25,185
+ 363 01dc 887F      		andi r24,lo8(-8)
+ 364 01de 8830      		cpi r24,lo8(8)
+ 365 01e0 01F4      		brne .L32
+ 366 01e2 987F      		andi r25,lo8(-8)
+ 367 01e4 9031      		cpi r25,lo8(16)
+ 368 01e6 01F0      		breq .L31
+ 369               	.L32:
+ 370               	.LM63:
+ 371 01e8 80E0      		ldi r24,lo8(sserial)
+ 372 01ea 90E0      		ldi r25,hi8(sserial)
+ 373 01ec 60E0      		ldi r22,lo8(.LC0)
+ 374 01ee 70E0      		ldi r23,hi8(.LC0)
+ 375 01f0 0E94 0000 		call _ZN6Serial7printlnEPh
+ 376               	.L31:
+ 377 01f4 0895      		ret
+ 378               	.LFE13:
+ 380               	.global	sserial
+ 381               	.global	sserial
+ 382               		.section .bss
+ 385               	sserial:
+ 386 0000 00        		.skip 1,0
+ 387               	.global	writeBuffer
+ 388               	.global	writeBuffer
+ 391               	writeBuffer:
+ 392 0001 0000 0000 		.skip 80,0
+ 392      0000 0000 
+ 392      0000 0000 
+ 392      0000 0000 
+ 392      0000 0000 
+ 393               	.global	readBuffer
+ 394               	.global	readBuffer
+ 397               	readBuffer:
+ 398 0051 0000      		.skip 2,0
+ 399               	.global	indexWrite
+ 400               	.global	indexWrite
+ 403               	indexWrite:
+ 404 0053 00        		.skip 1,0
+ 405               	.global	indexRead
+ 406               	.global	indexRead
+ 409               	indexRead:
+ 410 0054 00        		.skip 1,0
+ 411               	.global	requestedBytes
+ 412               	.global	requestedBytes
+ 415               	requestedBytes:
+ 416 0055 00        		.skip 1,0
+ 417               	.global	finishFLag
+ 418               	.global	finishFLag
+ 421               	finishFLag:
+ 422 0056 00        		.skip 1,0
+ 503               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 TWI.cpp
-C:\Users\airph\AppData\Local\Temp/ccecqITw.s:2      *ABS*:0000003f __SREG__
-C:\Users\airph\AppData\Local\Temp/ccecqITw.s:3      *ABS*:0000003e __SP_H__
-C:\Users\airph\AppData\Local\Temp/ccecqITw.s:4      *ABS*:0000003d __SP_L__
-C:\Users\airph\AppData\Local\Temp/ccecqITw.s:5      *ABS*:00000034 __CCP__
-C:\Users\airph\AppData\Local\Temp/ccecqITw.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\airph\AppData\Local\Temp/ccecqITw.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\airph\AppData\Local\Temp/ccecqITw.s:18     .text:00000000 _ZN3TWI4initEv
-C:\Users\airph\AppData\Local\Temp/ccecqITw.s:39     .text:00000010 _ZN3TWI4stopEv
-C:\Users\airph\AppData\Local\Temp/ccecqITw.s:65     .text:00000020 _ZN3TWI5startEv
-C:\Users\airph\AppData\Local\Temp/ccecqITw.s:269    .bss:00000000 sserial
-C:\Users\airph\AppData\Local\Temp/ccecqITw.s:101    .text:00000046 _ZN3TWI5writeEh
-C:\Users\airph\AppData\Local\Temp/ccecqITw.s:141    .text:00000070 _Z8sentAddrh
-C:\Users\airph\AppData\Local\Temp/ccecqITw.s:175    .text:0000009a _ZN3TWI4readEPhhi
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:2      *ABS*:0000003f __SREG__
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:3      *ABS*:0000003e __SP_H__
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:4      *ABS*:0000003d __SP_L__
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:5      *ABS*:00000034 __CCP__
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:18     .text:00000000 _Z11shiftBufferv
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:403    .bss:00000053 indexWrite
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:391    .bss:00000001 writeBuffer
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:47     .text:0000001c _Z8sentAddrh
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:66     .text:00000028 _ZN3TWI4stopEv
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:421    .bss:00000056 finishFLag
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:93     .text:00000044 _ZN3TWI4readEPhhi
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:397    .bss:00000051 readBuffer
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:415    .bss:00000055 requestedBytes
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:130    .text:00000066 __vector_24
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:409    .bss:00000054 indexRead
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:271    .text:00000172 _ZN3TWI5writeEh
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:304    .text:00000196 _ZN3TWI4initEv
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:337    .text:000001b2 _ZN3TWI5startEv
+C:\Users\airph\AppData\Local\Temp/ccocNgvc.s:385    .bss:00000000 sserial
 
 UNDEFINED SYMBOLS
 _ZN6Serial7printlnEPh

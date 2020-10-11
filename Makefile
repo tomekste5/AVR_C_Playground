@@ -80,7 +80,7 @@ OBJDIR = .
 
 
 # List C source files here. (C dependencies are automatically generated.) link header files here
-SRC =
+SRC = pwm.c
 
 
 # List C++ source files here. (C dependencies are automatically generated.)

@@ -8,22 +8,30 @@
 
 #include "Serial.h"
 #include "TWI.h"
+#include "pwm.h"
 
 unsigned char array[15] = "12345678912345";
 TWI twi; 
 Serial ssserial;
+bool a = false;
 int main(void)
 {
-	ssserial.begin();
+	int i = 0;
+	if(i == 0){
+		i++;
+		//sei();
+		ssserial.begin();
 
-	twi.init();
+		twi.init();
 
-	twi.start();
-	twi.write(0x68);
-	twi.write(0x00);
-	twi.stop();
+		twi.start();
+		twi.write(0x68);
+		twi.write(0x00);
+		twi.stop();
 
-	twi.start();
+	}
+
+	/*twi.start();
 	twi.write(0x68);
 	twi.write(0x1c);
 	twi.write(0x10);
@@ -33,10 +41,10 @@ int main(void)
 	twi.write(0x68);
 	twi.write(0x1b);
 	twi.write(0x08);
-	twi.stop();
+	twi.stop();*/
 
 	/*twi.start();
-	twi.read(array,0x68,14);*/
+	twi.read(array,0x68,14);
 	
 
 	//uint16_t acc_x = (array[0] << 8) | array[1];
@@ -62,12 +70,12 @@ int main(void)
 		char my_cha2r = serial.available() + '0';
 		serial.printCharln(my_cha2r);
 
-	}*/
+	}
 	_delay_ms(200);
 	_delay_ms(200);
 	_delay_ms(200);
 	_delay_ms(200);
 	_delay_ms(200);
-	_delay_ms(200);
+	_delay_ms(200);*/
 	
 }

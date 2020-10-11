@@ -10,290 +10,77 @@
   18               	main:
   19               	.LFB6:
   20               	.LM1:
-  21               	/* prologue: function */
-  22               	/* frame size = 0 */
-  23               	.LM2:
-  24 0000 80E0      		ldi r24,lo8(ssserial)
-  25 0002 90E0      		ldi r25,hi8(ssserial)
-  26 0004 0E94 0000 		call _ZN6Serial5beginEv
-  27               	.LM3:
-  28 0008 80E0      		ldi r24,lo8(twi)
-  29 000a 90E0      		ldi r25,hi8(twi)
-  30 000c 0E94 0000 		call _ZN3TWI4initEv
-  31               	.LM4:
-  32 0010 80E0      		ldi r24,lo8(twi)
-  33 0012 90E0      		ldi r25,hi8(twi)
-  34 0014 0E94 0000 		call _ZN3TWI5startEv
-  35               	.LM5:
-  36 0018 80E0      		ldi r24,lo8(twi)
-  37 001a 90E0      		ldi r25,hi8(twi)
-  38 001c 68E6      		ldi r22,lo8(104)
-  39 001e 0E94 0000 		call _ZN3TWI5writeEh
-  40               	.LM6:
-  41 0022 80E0      		ldi r24,lo8(twi)
-  42 0024 90E0      		ldi r25,hi8(twi)
-  43 0026 60E0      		ldi r22,lo8(0)
-  44 0028 0E94 0000 		call _ZN3TWI5writeEh
-  45               	.LM7:
-  46 002c 80E0      		ldi r24,lo8(twi)
-  47 002e 90E0      		ldi r25,hi8(twi)
-  48 0030 0E94 0000 		call _ZN3TWI4stopEv
-  49               	.LM8:
-  50 0034 80E0      		ldi r24,lo8(twi)
-  51 0036 90E0      		ldi r25,hi8(twi)
-  52 0038 0E94 0000 		call _ZN3TWI5startEv
-  53               	.LM9:
-  54 003c 80E0      		ldi r24,lo8(twi)
-  55 003e 90E0      		ldi r25,hi8(twi)
-  56 0040 68E6      		ldi r22,lo8(104)
-  57 0042 0E94 0000 		call _ZN3TWI5writeEh
-  58               	.LM10:
-  59 0046 80E0      		ldi r24,lo8(twi)
-  60 0048 90E0      		ldi r25,hi8(twi)
-  61 004a 6CE1      		ldi r22,lo8(28)
-  62 004c 0E94 0000 		call _ZN3TWI5writeEh
-  63               	.LM11:
-  64 0050 80E0      		ldi r24,lo8(twi)
-  65 0052 90E0      		ldi r25,hi8(twi)
-  66 0054 60E1      		ldi r22,lo8(16)
-  67 0056 0E94 0000 		call _ZN3TWI5writeEh
-  68               	.LM12:
-  69 005a 80E0      		ldi r24,lo8(twi)
-  70 005c 90E0      		ldi r25,hi8(twi)
-  71 005e 0E94 0000 		call _ZN3TWI4stopEv
-  72               	.LM13:
-  73 0062 80E0      		ldi r24,lo8(twi)
-  74 0064 90E0      		ldi r25,hi8(twi)
-  75 0066 0E94 0000 		call _ZN3TWI5startEv
-  76               	.LM14:
-  77 006a 80E0      		ldi r24,lo8(twi)
-  78 006c 90E0      		ldi r25,hi8(twi)
-  79 006e 68E6      		ldi r22,lo8(104)
-  80 0070 0E94 0000 		call _ZN3TWI5writeEh
-  81               	.LM15:
-  82 0074 80E0      		ldi r24,lo8(twi)
-  83 0076 90E0      		ldi r25,hi8(twi)
-  84 0078 6BE1      		ldi r22,lo8(27)
-  85 007a 0E94 0000 		call _ZN3TWI5writeEh
-  86               	.LM16:
-  87 007e 80E0      		ldi r24,lo8(twi)
-  88 0080 90E0      		ldi r25,hi8(twi)
-  89 0082 68E0      		ldi r22,lo8(8)
-  90 0084 0E94 0000 		call _ZN3TWI5writeEh
-  91               	.LM17:
-  92 0088 80E0      		ldi r24,lo8(twi)
-  93 008a 90E0      		ldi r25,hi8(twi)
-  94 008c 0E94 0000 		call _ZN3TWI4stopEv
-  95 0090 80ED      		ldi r24,lo8(2000)
-  96 0092 97E0      		ldi r25,hi8(2000)
-  97               	.LVL0:
-  98               	.LBB49:
-  99               	.LBB50:
- 100               	.LBB51:
- 101               	.LBB52:
- 102               	.LBB53:
- 103               	.LM18:
- 104 0094 20E9      		ldi r18,lo8(400)
- 105 0096 31E0      		ldi r19,hi8(400)
- 106               	.L2:
- 107 0098 F901      		movw r30,r18
- 108               	.LVL1:
- 109               	/* #APP */
- 110               	 ;  110 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 111 009a 3197      		1: sbiw r30,1
- 112 009c 01F4      		brne 1b
- 113               	 ;  0 "" 2
- 114               	/* #NOAPP */
- 115               	.LBE53:
- 116               	.LBE52:
- 117               	.LM19:
- 118 009e 0197      		sbiw r24,1
- 119               	.LM20:
- 120 00a0 01F4      		brne .L2
- 121 00a2 80ED      		ldi r24,lo8(2000)
- 122 00a4 97E0      		ldi r25,hi8(2000)
- 123               	.LVL2:
- 124               	.LBE51:
- 125               	.LBE50:
- 126               	.LBE49:
- 127               	.LBB54:
- 128               	.LBB55:
- 129               	.LBB56:
- 130               	.LBB57:
- 131               	.LBB58:
- 132               	.LM21:
- 133 00a6 20E9      		ldi r18,lo8(400)
- 134 00a8 31E0      		ldi r19,hi8(400)
- 135               	.L3:
- 136 00aa F901      		movw r30,r18
- 137               	.LVL3:
- 138               	/* #APP */
- 139               	 ;  110 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 140 00ac 3197      		1: sbiw r30,1
- 141 00ae 01F4      		brne 1b
- 142               	 ;  0 "" 2
- 143               	/* #NOAPP */
- 144               	.LBE58:
- 145               	.LBE57:
- 146               	.LM22:
- 147 00b0 0197      		sbiw r24,1
- 148               	.LM23:
- 149 00b2 01F4      		brne .L3
- 150 00b4 80ED      		ldi r24,lo8(2000)
- 151 00b6 97E0      		ldi r25,hi8(2000)
- 152               	.LVL4:
- 153               	.LBE56:
- 154               	.LBE55:
- 155               	.LBE54:
- 156               	.LBB59:
- 157               	.LBB60:
- 158               	.LBB61:
- 159               	.LBB62:
- 160               	.LBB63:
- 161               	.LM24:
- 162 00b8 20E9      		ldi r18,lo8(400)
- 163 00ba 31E0      		ldi r19,hi8(400)
- 164               	.L4:
- 165 00bc F901      		movw r30,r18
- 166               	.LVL5:
- 167               	/* #APP */
- 168               	 ;  110 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 169 00be 3197      		1: sbiw r30,1
- 170 00c0 01F4      		brne 1b
- 171               	 ;  0 "" 2
- 172               	/* #NOAPP */
- 173               	.LBE63:
- 174               	.LBE62:
- 175               	.LM25:
- 176 00c2 0197      		sbiw r24,1
- 177               	.LM26:
- 178 00c4 01F4      		brne .L4
- 179 00c6 80ED      		ldi r24,lo8(2000)
- 180 00c8 97E0      		ldi r25,hi8(2000)
- 181               	.LVL6:
- 182               	.LBE61:
- 183               	.LBE60:
- 184               	.LBE59:
- 185               	.LBB64:
- 186               	.LBB65:
- 187               	.LBB66:
- 188               	.LBB67:
- 189               	.LBB68:
- 190               	.LM27:
- 191 00ca 20E9      		ldi r18,lo8(400)
- 192 00cc 31E0      		ldi r19,hi8(400)
- 193               	.L5:
- 194 00ce F901      		movw r30,r18
- 195               	.LVL7:
- 196               	/* #APP */
- 197               	 ;  110 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 198 00d0 3197      		1: sbiw r30,1
- 199 00d2 01F4      		brne 1b
- 200               	 ;  0 "" 2
- 201               	/* #NOAPP */
- 202               	.LBE68:
- 203               	.LBE67:
- 204               	.LM28:
- 205 00d4 0197      		sbiw r24,1
- 206               	.LM29:
- 207 00d6 01F4      		brne .L5
- 208 00d8 80ED      		ldi r24,lo8(2000)
- 209 00da 97E0      		ldi r25,hi8(2000)
- 210               	.LVL8:
- 211               	.LBE66:
- 212               	.LBE65:
- 213               	.LBE64:
- 214               	.LBB69:
- 215               	.LBB70:
- 216               	.LBB71:
- 217               	.LBB72:
- 218               	.LBB73:
- 219               	.LM30:
- 220 00dc 20E9      		ldi r18,lo8(400)
- 221 00de 31E0      		ldi r19,hi8(400)
- 222               	.L6:
- 223 00e0 F901      		movw r30,r18
- 224               	.LVL9:
- 225               	/* #APP */
- 226               	 ;  110 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 227 00e2 3197      		1: sbiw r30,1
- 228 00e4 01F4      		brne 1b
- 229               	 ;  0 "" 2
- 230               	/* #NOAPP */
- 231               	.LBE73:
- 232               	.LBE72:
- 233               	.LM31:
- 234 00e6 0197      		sbiw r24,1
- 235               	.LM32:
- 236 00e8 01F4      		brne .L6
- 237 00ea 80ED      		ldi r24,lo8(2000)
- 238 00ec 97E0      		ldi r25,hi8(2000)
- 239               	.LVL10:
- 240               	.LBE71:
- 241               	.LBE70:
- 242               	.LBE69:
- 243               	.LBB74:
- 244               	.LBB75:
- 245               	.LBB76:
- 246               	.LBB77:
- 247               	.LBB78:
- 248               	.LM33:
- 249 00ee 20E9      		ldi r18,lo8(400)
- 250 00f0 31E0      		ldi r19,hi8(400)
- 251               	.L7:
- 252 00f2 F901      		movw r30,r18
- 253               	.LVL11:
- 254               	/* #APP */
- 255               	 ;  110 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 256 00f4 3197      		1: sbiw r30,1
- 257 00f6 01F4      		brne 1b
- 258               	 ;  0 "" 2
- 259               	/* #NOAPP */
- 260               	.LBE78:
- 261               	.LBE77:
- 262               	.LM34:
- 263 00f8 0197      		sbiw r24,1
- 264               	.LM35:
- 265 00fa 01F4      		brne .L7
- 266               	.LBE76:
- 267               	.LBE75:
- 268               	.LBE74:
- 269               	.LM36:
- 270 00fc 80E0      		ldi r24,lo8(0)
- 271 00fe 90E0      		ldi r25,hi8(0)
- 272               	.LVL12:
- 273               	/* epilogue start */
- 274 0100 0895      		ret
- 275               	.LFE6:
- 277               	.global	array
- 278               		.data
- 281               	array:
- 282 0000 3132 3334 		.string	"12345678912345"
- 282      3536 3738 
- 282      3931 3233 
- 282      3435 00
- 283               	.global	twi
- 284               	.global	twi
- 285               		.section .bss
- 288               	twi:
- 289 0000 00        		.skip 1,0
- 290               	.global	ssserial
- 291               	.global	ssserial
- 294               	ssserial:
- 295 0001 00        		.skip 1,0
- 320               	.Letext0:
+  21 0000 0F93      		push r16
+  22 0002 1F93      		push r17
+  23               	/* prologue: function */
+  24               	/* frame size = 0 */
+  25               	.LBB2:
+  26               	.LM2:
+  27 0004 80E0      		ldi r24,lo8(ssserial)
+  28 0006 90E0      		ldi r25,hi8(ssserial)
+  29 0008 0E94 0000 		call _ZN6Serial5beginEv
+  30               	.LM3:
+  31 000c 00E0      		ldi r16,lo8(twi)
+  32 000e 10E0      		ldi r17,hi8(twi)
+  33 0010 C801      		movw r24,r16
+  34 0012 0E94 0000 		call _ZN3TWI4initEv
+  35               	.LM4:
+  36 0016 C801      		movw r24,r16
+  37 0018 0E94 0000 		call _ZN3TWI5startEv
+  38               	.LM5:
+  39 001c C801      		movw r24,r16
+  40 001e 68E6      		ldi r22,lo8(104)
+  41 0020 0E94 0000 		call _ZN3TWI5writeEh
+  42               	.LM6:
+  43 0024 C801      		movw r24,r16
+  44 0026 60E0      		ldi r22,lo8(0)
+  45 0028 0E94 0000 		call _ZN3TWI5writeEh
+  46               	.LM7:
+  47 002c C801      		movw r24,r16
+  48 002e 0E94 0000 		call _ZN3TWI4stopEv
+  49               	.LBE2:
+  50               	.LM8:
+  51 0032 80E0      		ldi r24,lo8(0)
+  52 0034 90E0      		ldi r25,hi8(0)
+  53               	/* epilogue start */
+  54 0036 1F91      		pop r17
+  55 0038 0F91      		pop r16
+  56 003a 0895      		ret
+  57               	.LFE6:
+  59               	.global	array
+  60               		.data
+  63               	array:
+  64 0000 3132 3334 		.string	"12345678912345"
+  64      3536 3738 
+  64      3931 3233 
+  64      3435 00
+  65               	.global	twi
+  66               	.global	twi
+  67               		.section .bss
+  70               	twi:
+  71 0000 00        		.skip 1,0
+  72               	.global	ssserial
+  73               	.global	ssserial
+  76               	ssserial:
+  77 0001 00        		.skip 1,0
+  78               	.global	a
+  79               	.global	a
+  82               	a:
+  83 0002 00        		.skip 1,0
+ 108               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 main.cpp
-C:\Users\airph\AppData\Local\Temp/ccUjSFTl.s:2      *ABS*:0000003f __SREG__
-C:\Users\airph\AppData\Local\Temp/ccUjSFTl.s:3      *ABS*:0000003e __SP_H__
-C:\Users\airph\AppData\Local\Temp/ccUjSFTl.s:4      *ABS*:0000003d __SP_L__
-C:\Users\airph\AppData\Local\Temp/ccUjSFTl.s:5      *ABS*:00000034 __CCP__
-C:\Users\airph\AppData\Local\Temp/ccUjSFTl.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\airph\AppData\Local\Temp/ccUjSFTl.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\airph\AppData\Local\Temp/ccUjSFTl.s:18     .text:00000000 main
-C:\Users\airph\AppData\Local\Temp/ccUjSFTl.s:294    .bss:00000001 ssserial
-C:\Users\airph\AppData\Local\Temp/ccUjSFTl.s:288    .bss:00000000 twi
-C:\Users\airph\AppData\Local\Temp/ccUjSFTl.s:281    .data:00000000 array
+C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:2      *ABS*:0000003f __SREG__
+C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:3      *ABS*:0000003e __SP_H__
+C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:4      *ABS*:0000003d __SP_L__
+C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:5      *ABS*:00000034 __CCP__
+C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:18     .text:00000000 main
+C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:76     .bss:00000001 ssserial
+C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:70     .bss:00000000 twi
+C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:63     .data:00000000 array
+C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:82     .bss:00000002 a
 
 UNDEFINED SYMBOLS
 _ZN6Serial5beginEv
