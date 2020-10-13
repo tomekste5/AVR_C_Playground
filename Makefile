@@ -81,6 +81,7 @@ OBJDIR = .
 
 # List C source files here. (C dependencies are automatically generated.) link header files here
 SRC = pwm.c
+SRC += time.c
 
 
 # List C++ source files here. (C dependencies are automatically generated.)

@@ -6,51 +6,69 @@
 
 #include <util/setbaud.h>
 
+#include <avr/wdt.h>
+
 #include "Serial.h"
 #include "TWI.h"
 #include "pwm.h"
+#include "time.h"
 
 unsigned char array[15] = "12345678912345";
 TWI twi; 
 Serial ssserial;
 bool a = false;
+int i = 0;
 int main(void)
 {
-	int i = 0;
-	if(i == 0){
-		i++;
+	wdt_enable(WDTO_8S);
+	sei();
+	ssserial.begin();
+	ssserial.printCharln('A');
+	analogWrite(PB1,120);
+	unsigned long value = pulseIn(PD2);
+	if(value < 130 && value >110){
+		ssserial.println((unsigned char*)"SUCESSFUL");
+	}else{
+		ssserial.println((unsigned char*)"FAILED");
+	}
+	//wdt_reset();
+
 		//sei();
-		ssserial.begin();
+		/*i = 0;
+		if(i == 0){
+			twi.init();
 
-		twi.init();
+			twi.start();
+			twi.write(0x6b);
+			twi.write(0x00);
+			twi.stop();
+			
+			i++;
+		}*/
+	//	twi.write(0x00);
+		//twi.stop();
 
+		
+	/*	twi.start();
+		twi.write(0x68);
+		twi.write(0x1c);
+		twi.write(0x10);
+		twi.stop();
+	
 		twi.start();
 		twi.write(0x68);
-		twi.write(0x00);
+		twi.write(0x1b);
+		twi.write(0x08);
 		twi.stop();
 
-	}
-
-	/*twi.start();
-	twi.write(0x68);
-	twi.write(0x1c);
-	twi.write(0x10);
-	twi.stop();
-	
-	twi.start();
-	twi.write(0x68);
-	twi.write(0x1b);
-	twi.write(0x08);
-	twi.stop();*/
-
-	/*twi.start();
-	twi.read(array,0x68,14);
+		twi.start();
+		twi.read(array,0x68,14);
 	
 
-	//uint16_t acc_x = (array[0] << 8) | array[1];
+		uint16_t acc_x = (array[0] << 8) | array[1];
 	
-	//serial.println((unsigned char*) "Vertical acceleration");
-	//serial.println((unsigned char*) &acc_x);
+		ssserial.println((unsigned char*) "Vertical acceleration");
+		ssserial.println((unsigned char*) &acc_x);*/
 
 
 

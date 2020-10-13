@@ -6,87 +6,145 @@
    6               	__tmp_reg__ = 0
    7               	__zero_reg__ = 1
   15               	.Ltext0:
-  16               	.global	main
-  18               	main:
-  19               	.LFB6:
-  20               	.LM1:
-  21 0000 0F93      		push r16
-  22 0002 1F93      		push r17
-  23               	/* prologue: function */
-  24               	/* frame size = 0 */
-  25               	.LBB2:
-  26               	.LM2:
-  27 0004 80E0      		ldi r24,lo8(ssserial)
-  28 0006 90E0      		ldi r25,hi8(ssserial)
-  29 0008 0E94 0000 		call _ZN6Serial5beginEv
-  30               	.LM3:
-  31 000c 00E0      		ldi r16,lo8(twi)
-  32 000e 10E0      		ldi r17,hi8(twi)
-  33 0010 C801      		movw r24,r16
-  34 0012 0E94 0000 		call _ZN3TWI4initEv
-  35               	.LM4:
-  36 0016 C801      		movw r24,r16
-  37 0018 0E94 0000 		call _ZN3TWI5startEv
-  38               	.LM5:
-  39 001c C801      		movw r24,r16
-  40 001e 68E6      		ldi r22,lo8(104)
-  41 0020 0E94 0000 		call _ZN3TWI5writeEh
-  42               	.LM6:
-  43 0024 C801      		movw r24,r16
-  44 0026 60E0      		ldi r22,lo8(0)
-  45 0028 0E94 0000 		call _ZN3TWI5writeEh
-  46               	.LM7:
-  47 002c C801      		movw r24,r16
-  48 002e 0E94 0000 		call _ZN3TWI4stopEv
-  49               	.LBE2:
-  50               	.LM8:
-  51 0032 80E0      		ldi r24,lo8(0)
-  52 0034 90E0      		ldi r25,hi8(0)
-  53               	/* epilogue start */
-  54 0036 1F91      		pop r17
-  55 0038 0F91      		pop r16
-  56 003a 0895      		ret
-  57               	.LFE6:
-  59               	.global	array
-  60               		.data
-  63               	array:
-  64 0000 3132 3334 		.string	"12345678912345"
-  64      3536 3738 
-  64      3931 3233 
-  64      3435 00
-  65               	.global	twi
-  66               	.global	twi
-  67               		.section .bss
-  70               	twi:
-  71 0000 00        		.skip 1,0
-  72               	.global	ssserial
-  73               	.global	ssserial
-  76               	ssserial:
-  77 0001 00        		.skip 1,0
-  78               	.global	a
-  79               	.global	a
-  82               	a:
-  83 0002 00        		.skip 1,0
- 108               	.Letext0:
+  16               		.data
+  17               	.LC0:
+  18 0000 5355 4345 		.string	"SUCESSFUL"
+  18      5353 4655 
+  18      4C00 
+  19               	.LC1:
+  20 000a 4641 494C 		.string	"FAILED"
+  20      4544 00
+  21               		.text
+  22               	.global	main
+  24               	main:
+  25               	.LFB6:
+  26               	.LM1:
+  27               	/* prologue: function */
+  28               	/* frame size = 0 */
+  29               	.LBB2:
+  30               	.LM2:
+  31 0000 29E2      		ldi r18,lo8(41)
+  32 0002 88E1      		ldi r24,lo8(24)
+  33 0004 90E0      		ldi r25,hi8(24)
+  34               	/* #APP */
+  35               	 ;  23 "main.cpp" 1
+  36 0006 0FB6      		in __tmp_reg__,__SREG__
+  37 0008 F894      		cli
+  38 000a A895      		wdr
+  39 000c 8093 6000 		sts 96,r24
+  40 0010 0FBE      		out __SREG__,__tmp_reg__
+  41 0012 2093 6000 		sts 96,r18
+  42               		
+  43               	 ;  0 "" 2
+  44               	.LM3:
+  45               	 ;  24 "main.cpp" 1
+  46 0016 7894      		sei
+  47               	 ;  0 "" 2
+  48               	.LM4:
+  49               	/* #NOAPP */
+  50 0018 80E0      		ldi r24,lo8(ssserial)
+  51 001a 90E0      		ldi r25,hi8(ssserial)
+  52 001c 0E94 0000 		call _ZN6Serial5beginEv
+  53               	.LM5:
+  54 0020 80E0      		ldi r24,lo8(ssserial)
+  55 0022 90E0      		ldi r25,hi8(ssserial)
+  56 0024 61E4      		ldi r22,lo8(65)
+  57 0026 0E94 0000 		call _ZN6Serial11printCharlnEh
+  58               	.LM6:
+  59 002a 81E0      		ldi r24,lo8(1)
+  60 002c 90E0      		ldi r25,hi8(1)
+  61 002e 68E7      		ldi r22,lo8(120)
+  62 0030 70E0      		ldi r23,hi8(120)
+  63 0032 0E94 0000 		call analogWrite
+  64               	.LM7:
+  65 0036 82E0      		ldi r24,lo8(2)
+  66 0038 0E94 0000 		call pulseIn
+  67               	.LM8:
+  68 003c 6F56      		subi r22,lo8(-(-111))
+  69 003e 7040      		sbci r23,hi8(-(-111))
+  70 0040 8040      		sbci r24,hlo8(-(-111))
+  71 0042 9040      		sbci r25,hhi8(-(-111))
+  72               	.LVL0:
+  73 0044 6331      		cpi r22,lo8(19)
+  74 0046 7105      		cpc r23,__zero_reg__
+  75 0048 8105      		cpc r24,__zero_reg__
+  76 004a 9105      		cpc r25,__zero_reg__
+  77 004c 00F4      		brsh .L2
+  78               	.LM9:
+  79 004e 80E0      		ldi r24,lo8(ssserial)
+  80 0050 90E0      		ldi r25,hi8(ssserial)
+  81 0052 60E0      		ldi r22,lo8(.LC0)
+  82 0054 70E0      		ldi r23,hi8(.LC0)
+  83               	.LVL1:
+  84 0056 00C0      		rjmp .L5
+  85               	.LVL2:
+  86               	.L2:
+  87               	.LM10:
+  88 0058 80E0      		ldi r24,lo8(ssserial)
+  89 005a 90E0      		ldi r25,hi8(ssserial)
+  90 005c 60E0      		ldi r22,lo8(.LC1)
+  91 005e 70E0      		ldi r23,hi8(.LC1)
+  92               	.LVL3:
+  93               	.L5:
+  94 0060 0E94 0000 		call _ZN6Serial7printlnEPh
+  95               	.LM11:
+  96               	/* #APP */
+  97               	 ;  34 "main.cpp" 1
+  98 0064 A895      		wdr
+  99               	 ;  0 "" 2
+ 100               	/* #NOAPP */
+ 101               	.LBE2:
+ 102               	.LM12:
+ 103 0066 80E0      		ldi r24,lo8(0)
+ 104 0068 90E0      		ldi r25,hi8(0)
+ 105               	/* epilogue start */
+ 106 006a 0895      		ret
+ 107               	.LFE6:
+ 109               	.global	array
+ 110               		.data
+ 113               	array:
+ 114 0011 3132 3334 		.string	"12345678912345"
+ 114      3536 3738 
+ 114      3931 3233 
+ 114      3435 00
+ 115               	.global	twi
+ 116               	.global	twi
+ 117               		.section .bss
+ 120               	twi:
+ 121 0000 00        		.skip 1,0
+ 122               	.global	ssserial
+ 123               	.global	ssserial
+ 126               	ssserial:
+ 127 0001 00        		.skip 1,0
+ 128               	.global	a
+ 129               	.global	a
+ 132               	a:
+ 133 0002 00        		.skip 1,0
+ 134               	.global	i
+ 135               	.global	i
+ 138               	i:
+ 139 0003 0000      		.skip 2,0
+ 164               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 main.cpp
-C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:2      *ABS*:0000003f __SREG__
-C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:3      *ABS*:0000003e __SP_H__
-C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:4      *ABS*:0000003d __SP_L__
-C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:5      *ABS*:00000034 __CCP__
-C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:18     .text:00000000 main
-C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:76     .bss:00000001 ssserial
-C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:70     .bss:00000000 twi
-C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:63     .data:00000000 array
-C:\Users\airph\AppData\Local\Temp/ccU0bnt5.s:82     .bss:00000002 a
+C:\Users\airph\AppData\Local\Temp/ccFH17NI.s:2      *ABS*:0000003f __SREG__
+C:\Users\airph\AppData\Local\Temp/ccFH17NI.s:3      *ABS*:0000003e __SP_H__
+C:\Users\airph\AppData\Local\Temp/ccFH17NI.s:4      *ABS*:0000003d __SP_L__
+C:\Users\airph\AppData\Local\Temp/ccFH17NI.s:5      *ABS*:00000034 __CCP__
+C:\Users\airph\AppData\Local\Temp/ccFH17NI.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\airph\AppData\Local\Temp/ccFH17NI.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\airph\AppData\Local\Temp/ccFH17NI.s:24     .text:00000000 main
+C:\Users\airph\AppData\Local\Temp/ccFH17NI.s:126    .bss:00000001 ssserial
+C:\Users\airph\AppData\Local\Temp/ccFH17NI.s:113    .data:00000011 array
+C:\Users\airph\AppData\Local\Temp/ccFH17NI.s:120    .bss:00000000 twi
+C:\Users\airph\AppData\Local\Temp/ccFH17NI.s:132    .bss:00000002 a
+C:\Users\airph\AppData\Local\Temp/ccFH17NI.s:138    .bss:00000003 i
 
 UNDEFINED SYMBOLS
 _ZN6Serial5beginEv
-_ZN3TWI4initEv
-_ZN3TWI5startEv
-_ZN3TWI5writeEh
-_ZN3TWI4stopEv
+_ZN6Serial11printCharlnEh
+analogWrite
+pulseIn
+_ZN6Serial7printlnEPh
 __do_copy_data
 __do_clear_bss

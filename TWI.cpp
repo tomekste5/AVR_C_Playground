@@ -28,10 +28,10 @@ void sentAddr(unsigned char addr){
 
 void TWI::stop(){
     while ((TWCR & (1<< TWINT)));
-    if(finishFLag == 1){
+ //   if(finishFLag == 1){
         TWCR = (1<<TWINT) | (1<<TWSTO) | (1<<TWEN);
         finishFLag = 0;
-    }
+    //}
 }
 void TWI::read(unsigned char bytes[], unsigned char addr, int size){
     readBuffer = bytes;
@@ -75,35 +75,31 @@ ISR(TWI_vect, ISR_BLOCK){
 void TWI::write(unsigned char data){
     writeBuffer[indexWrite] = data;
     indexWrite++;
-    TWCR |= (1<< TWIE);
-    TWCR |= (0<<TWINT);
+    TWDR = writeBuffer[0];
+    shiftBuffer();
+    TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWIE);
 }
 
 void TWI::init(){
-    DDRC |= (1<<PC5) | (1<<PC4);
-    PORTC|= (1<<PC5) | (1<<PC4);
+    /*DDRC |= (1<<PC5) | (1<<PC4);
+    PORTC|= (1<<PC5) | (1<<PC4);*/
 
-	TWBR =  0;
+    TWSR = 0; 
+
+	TWBR =  ((F_CPU / 100000L) - 16) / 2;;
     // Prescaler to 64
     // Enable TWI
-    	
-    TWSR = 0;   // TWPS = 0 => prescale value = 1 
-	    TWCR = (1 << TWEN) |                               // Enable TWI interface and release TWI pins.
-	       (0 << TWIE) | (0 << TWINT) |                // Disable TWI interupt.
-	       (1 << TWEA) | (0 << TWSTA) | (0 << TWSTO) | // No signal requests.
-	       (0 << TWWC);
-
+    	  // TWPS = 0 => prescale value = 1 
+	    TWCR = (1 << TWEN);
 }
 
 void TWI::start(){
-    TWCR &= ~((1 << TWSTO) | (1 << TWEN));
-    TWCR |= (1 << TWEN);
 
     TWCR = (1<<TWINT) | (1<<TWSTA) | (1<<TWEN);
 
-    while  (!(TWSR & (1<<TWINT))); 
+    while  (!(TWCR & (1<<TWINT))); 
 
-    if (((TWSR & 0xF8)!= TW_START) | ((TWSR & 0xF8) != TW_REP_START)){
+    if (((TWSR & 0xF8)!= TW_START) && ((TWSR & 0xF8) != TW_REP_START)){
         sserial.println((unsigned char*) "could not sent start bit");
     }
 }
