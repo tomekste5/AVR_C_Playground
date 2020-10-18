@@ -80,9 +80,8 @@ OBJDIR = .
 
 
 # List C source files here. (C dependencies are automatically generated.) link header files here
-SRC = pwm.c
-SRC += time.c
-
+SRC = time.c
+SRC += pwm.c
 
 # List C++ source files here. (C dependencies are automatically generated.)
 CPPSRC = $(TARGET).cpp
@@ -117,7 +116,7 @@ DEBUG = dwarf-2
 #     Each directory must be seperated by a space.
 #     Use forward slashes for directory separators.
 #     For a directory that has spaces, enclose it in quotes.
-EXTRAINCDIRS = 
+EXTRAINCDIRS = "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino"
 
 
 # Compiler flag to set the C Standard level.

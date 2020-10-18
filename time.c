@@ -38,15 +38,10 @@ void init_millis(unsigned long f_cpu)
   TIMSK1 |= (1 << OCIE1A);
  
   //REMEMBER TO ENABLE GLOBAL INTERRUPTS AFTER THIS WITH sei(); !!!
+  sei();
 }
 
 unsigned long millis()
 {
-  unsigned long millis_return;
- 
-  // Ensure this cannot be disrupted
-  ATOMIC_BLOCK(ATOMIC_FORCEON) {
-    millis_return = timer1_millis;
-  }
-  return millis_return;
+  return timer1_millis;
 } 

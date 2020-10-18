@@ -5,8 +5,10 @@
 #include <stdint.h>
 
 #include <util/setbaud.h>
+incl
 
 #include <avr/wdt.h>
+#include <Arduino.h>
 
 #include "Serial.h"
 #include "TWI.h"
@@ -19,19 +21,17 @@ Serial ssserial;
 bool a = false;
 int i = 0;
 int main(void)
-{
-	wdt_enable(WDTO_8S);
-	sei();
-	ssserial.begin();
-	ssserial.printCharln('A');
-	analogWrite(PB1,120);
-	unsigned long value = pulseIn(PD2);
-	if(value < 130 && value >110){
-		ssserial.println((unsigned char*)"SUCESSFUL");
-	}else{
-		ssserial.println((unsigned char*)"FAILED");
+{		
+		init_millis(F_CPU);
+		analogWrite(PB1,120);
+		ssserial.begin();
+		ssserial.printCharln('A');
+		wdt_enable(WDTO_8S);
+	while (1)
+	{
+		uint8_t value = pulseIn(PD2)*255;
+		ssserial.printCharln((unsigned char) value);
 	}
-	//wdt_reset();
 
 		//sei();
 		/*i = 0;
