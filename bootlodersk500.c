@@ -18,7 +18,7 @@ DESCRIPTION:
     is entered. If not, normal execution is done from $0000
     "reset" vector in Application area.
     Size fits into a 1024 word bootloader section
-	when compiled with avr-gcc 4.1
+	when compilewith avr-gcc 4.1
 	(direct replace on Wiring Board without fuse setting changed)
 USAGE:
     - Set AVR MCU type and clock-frequency (F_CPU) in the Makefile.

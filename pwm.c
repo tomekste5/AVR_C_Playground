@@ -96,7 +96,7 @@ ISR(INT1_vect){
 unsigned long pulseIn(uint8_t pin)
 {
 	SREG |= (1<<7);
-	EIMSK |= 0x03;   //Enable External Interrupts INT0 and INT1 should be 0x03
+	EIMSK |= 0x03;   //Enabl External Interrupts INT0 and INT1 should be 0x03
 	EICRA = (1<<3) | (1<<2) | (1<<1) | (1<<0);  
 
 	while (lowTime == 0);

@@ -15,6 +15,7 @@ void SPI::write(unsigned char msg){
 ISR(SPI_STC_vect){
     
 }
+//c
 char SPI(void)
 {
 /* Wait for reception complete */

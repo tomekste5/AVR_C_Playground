@@ -35,7 +35,6 @@
 #
 # make filename.i = Create a preprocessed source file for use in submitting
 #                   bug reports to the GCC project.
-#
 # To rebuild project do "make clean" then "make all".
 #----------------------------------------------------------------------------
 

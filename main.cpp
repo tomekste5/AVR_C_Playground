@@ -5,7 +5,6 @@
 #include <stdint.h>
 
 #include <util/setbaud.h>
-incl
 
 #include <avr/wdt.h>
 #include <Arduino.h>
@@ -89,7 +88,7 @@ int main(void)
 		serial.printCharln(my_cha2r);
 
 	}
-	_delay_ms(200);
+	_delay_ms(200)
 	_delay_ms(200);
 	_delay_ms(200);
 	_delay_ms(200);
